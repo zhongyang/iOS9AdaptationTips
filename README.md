@@ -612,6 +612,22 @@ iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇�
  5. [Optimizing Your App for Multitasking on iPad in iOS](https://developer.apple.com/videos/wwdc/2015/?id=212)
 
 
+##7. 默认字体
+苹果ios9 使用了San Francisco字体，替换了以前使用的Helvetica Neue字体，最直观的感受是字体更黑。
+在适配的过程中，遇到的一个问题是Font.Leading属性的值为空。
+
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100.0f, 100.0f)];
+
+    [self.view addSubview:label];
+
+    [label setFont:[UIFont systemFontOfSize:10.0f]];
+
+    NSLog(@"%f", label.font.leading);  
+
+打印出的结果为0.000000， 应该是苹果的一个Bug.
+解决办法使用lineHeight替换.
+
+leading是什么鬼？ https://www.cocoanetics.com/2010/02/understanding-uifont/
 
 
 ----------
